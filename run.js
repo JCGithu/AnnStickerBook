@@ -5,7 +5,7 @@ let wRatio = 0.05;
 let hRatio = 0.12;
 
 //Number of Stickers currently. Don't need to update this too much, it'll search for new ones on loading.
-let stickers = 5;
+let stickers = 13;
 
 // The max size of stickers, and the amount they can shrink by (applied randomly).
 let size = 200;
