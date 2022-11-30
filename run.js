@@ -149,7 +149,7 @@ client.connect();
 client.on('message', (channel, tags, message, self) => {
   if (tags['custom-reward-id'] === '407dddb7-6e27-4d4d-8b49-f3421bb9659e'){
     console.log('Sticker redeemed by ' + tags.username);
-    //putStickerOn({shiny: false, tags: tags});
+    putStickerOn({shiny: false, tags: tags});
   }
   if (tags.badges.broadcaster || tags.badges.moderator ){
     if (message === '!addSticker') putStickerOn({shiny: false, tags: tags});
