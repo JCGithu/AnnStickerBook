@@ -117,6 +117,7 @@ function putStickerOn(settings){
   sticker.style.width = resize + 'px';
   sticker.style.zIndex = 1;
   sticker.src = `./stickers/Sticker${stickerVariant}.png`;
+  //sticker.src = `./stickers/geo.gif`;
   if (settings.shiny){
     sticker.style.zIndex = 10;
     sticker.style.filter = "brightness(1.5) contrast(1.5) drop-shadow(0 0 0.5em gold)";
@@ -146,7 +147,7 @@ function putStickerOn(settings){
 client.on("connected", () => console.log('Reading from Twitch! ✅'));
 client.connect();
 client.on('message', (channel, tags, message, self) => {
-  if (tags['custom-reward-id'] === '697b3a57-f063-4125-a453-d44f08ecab4a'){
+  if (tags['custom-reward-id'] === '407dddb7-6e27-4d4d-8b49-f3421bb9659e'){
     console.log('Sticker redeemed by ' + tags.username);
     //putStickerOn({shiny: false, tags: tags});
   }
