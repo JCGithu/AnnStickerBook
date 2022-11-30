@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ewan Sticker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="tmi.min.js"></script>
+  <script src="run.js"></script>
+</head>
+
+<body>
+  <h1 id="update"></h1>
+  <!--   <div id="one"></div>
+  <div id="two"></div>
+  <div id="three"></div>
+  <div id="four"></div> -->
+  <script>
+    var update = document.createElement('h1');
+    update.id = 'update';
+    update.innerText = 'NEW STICKER ADDED';
+    document.body.appendChild(update);
+
+    function stickerChecker() {
+      let stickerCheck = UrlExists(`./stickers/Sticker${stickers}.png`);
+      if (stickerCheck) {
+        console.log(`Sticker${stickers} found!`);
+        stickers++;
+        //update.style.bottom = '0%';
+      } else {
+        //update.style.bottom = '-7rem';
+      }
+    }
+
+    stickerChecker();
+    setInterval(() => {
+      stickerChecker();
+    }, 5000);
+  </script>
+</body>
+
+</html>
