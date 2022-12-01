@@ -60,6 +60,9 @@ let square = document.getElementById('square');
 
 // FUNCTIONS
 function putStickerOn(settings){
+
+  console.log('wow2');
+
   let sticker = document.createElement('img');
   
   // PLACEMENT
@@ -117,7 +120,7 @@ function putStickerOn(settings){
   sticker.style.width = resize + 'px';
   sticker.style.zIndex = 1;
   sticker.src = `./stickers/Sticker${stickerVariant}.png`;
-  if (tags.geo) sticker.src = `./stickers/geo.gif`;
+  if (settings.geo) sticker.src = `./stickers/geo.gif`;
   if (settings.shiny){
     sticker.style.zIndex = 10;
     sticker.style.filter = "brightness(1.5) contrast(1.5) drop-shadow(0 0 0.5em gold)";
@@ -147,17 +150,20 @@ function putStickerOn(settings){
 client.on("connected", () => console.log('Reading from Twitch! ✅'));
 client.connect();
 client.on('message', (channel, tags, message, self) => {
+
+  
   if (tags['custom-reward-id'] === '407dddb7-6e27-4d4d-8b49-f3421bb9659e'){
     console.log('Sticker redeemed by ' + tags.username);
-    putStickerOn({shiny: false, tags: tags});
+    putStickerOn({shiny: false, tags: tags, geo: false});
   }
   if (tags.badges.broadcaster || tags.badges.moderator ){
-    if (message === '!addSticker') putStickerOn({shiny: false, tags: tags});
+    console.log('wow');
+    if (message === '!addSticker') putStickerOn({shiny: false, tags: tags, geo: false});
   }
 
   if(tags.username === 'colloquialowl' && message === '!geospin'){
     tags['geo'] = true;
-    putStickerOn({shiny:false, tags:tags})
+    putStickerOn({shiny:false, tags:tags, geo: true})
   }
 });
 
