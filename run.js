@@ -5,7 +5,7 @@ let wRatio = 0.05;
 let hRatio = 0.12;
 
 //Number of Stickers currently. Don't need to update this too much, it'll search for new ones on loading.
-let stickers = 13;
+let stickers = 14;
 
 // The max size of stickers, and the amount they can shrink by (applied randomly).
 let size = 200;
@@ -117,7 +117,7 @@ function putStickerOn(settings){
   sticker.style.width = resize + 'px';
   sticker.style.zIndex = 1;
   sticker.src = `./stickers/Sticker${stickerVariant}.png`;
-  //sticker.src = `./stickers/geo.gif`;
+  if (tags.geo) sticker.src = `./stickers/geo.gif`;
   if (settings.shiny){
     sticker.style.zIndex = 10;
     sticker.style.filter = "brightness(1.5) contrast(1.5) drop-shadow(0 0 0.5em gold)";
@@ -153,6 +153,11 @@ client.on('message', (channel, tags, message, self) => {
   }
   if (tags.badges.broadcaster || tags.badges.moderator ){
     if (message === '!addSticker') putStickerOn({shiny: false, tags: tags});
+  }
+
+  if(tags.username === 'colloquialowl' && message === '!geospin'){
+    tags['geo'] = true;
+    putStickerOn({shiny:false, tags:tags})
   }
 });
 
